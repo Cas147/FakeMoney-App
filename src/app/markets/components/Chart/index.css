@@ -1,0 +1,11 @@
+#chartContainer .apexcharts-tooltip {
+  color: #000000;
+}
+
+#chartContainer .apexcharts-tooltip .apexcharts-tooltip-series-group.active {
+  background: #ffffff !important;
+}
+
+#apexcharts-text #apexcharts-yaxis-label {
+  color: #ffffff !important;
+}
