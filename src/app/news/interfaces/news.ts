@@ -7,7 +7,7 @@ export type EventData = {
   estimate: number | null;
   actual: number | null;
   change: number | null;
-  impact: string | null;
+  impact: null | "Low" | "Medium" | "High" | "None";
   changePercentage: number;
 };
 

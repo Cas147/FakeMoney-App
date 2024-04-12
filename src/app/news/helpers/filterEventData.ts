@@ -7,7 +7,7 @@ export const convertToBogotaTimezone = (events: EventData[]): EventData[] => {
     const newDate = `${event.date} +0000`;
     const utcDate = new Date(newDate);
 
-    const options = {
+    const options: any = {
       year: "numeric",
       month: "numeric",
       day: "numeric",

@@ -15,14 +15,17 @@ import DateNavigator from "../DateNavigator";
 import { economicCalendarNews } from "../../__Mock__/economicCalendar";
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { convertToBogotaTimezone, filterEventData } from "../../helpers/filterEventData";
+import {
+  convertToBogotaTimezone,
+  filterEventData,
+} from "../../helpers/filterEventData";
 import Select from "react-select";
 import { EventData, CurrencyOption } from "../../interfaces/news";
 import { getAllCurrencies } from "../../helpers/getAllCurrencies";
 import { FaIndustry } from "react-icons/fa";
 import { orderByDateAsc } from "../../helpers/orderByDateAsc";
 
-const TableDemo = ({data}: {data: EventData[]}): JSX.Element => {
+const TableDemo = ({ data }: { data: EventData[] }): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState<number>(3);
   const [dataToShow, setDataToShow] = useState<EventData[]>([]);
   const [selectedCurrencies, setSelectedCurrencies] = useState<string[]>([]);
@@ -60,8 +63,8 @@ const TableDemo = ({data}: {data: EventData[]}): JSX.Element => {
             isMulti
             name="colors"
             options={getAllCurrencies(economicCalendarNews)}
-            onChange={(value) =>
-              setSelectedCurrencies(value.map((v) => v?.value))
+            onChange={(value: any) =>
+              setSelectedCurrencies(value.map((v: any) => v?.value))
             }
             placeholder="Divisas"
             className="basic-multi-select"
@@ -83,7 +86,7 @@ const TableDemo = ({data}: {data: EventData[]}): JSX.Element => {
           </TableRow>
         </TableHeader>
         <TableBody className="bg-zinc-950">
-          {(orderByDateAsc(dataToShow) || []).map((invoice, key) => (
+          {(orderByDateAsc(dataToShow) || []).map((invoice: EventData, key) => (
             <TableRow
               key={`${invoice.event}-${key}`}
               className="border-none bg-zinc-950"
@@ -93,7 +96,7 @@ const TableDemo = ({data}: {data: EventData[]}): JSX.Element => {
               </TableCell>
               <TableCell
                 className={`${
-                  impactColor[invoice.impact || "none"]
+                  impactColor[invoice.impact || "None"]
                 } flex justify-center text-lg`}
               >
                 <FaIndustry />
@@ -106,7 +109,7 @@ const TableDemo = ({data}: {data: EventData[]}): JSX.Element => {
                 className={`${
                   !invoice.estimate
                     ? "text-white"
-                    : invoice.actual > invoice.estimate
+                    : invoice.actual && invoice.actual > invoice.estimate
                     ? "text-green-400"
                     : "text-red-600"
                 }`}
@@ -118,7 +121,9 @@ const TableDemo = ({data}: {data: EventData[]}): JSX.Element => {
                 className={`${
                   !invoice.estimate
                     ? "text-white"
-                    : invoice.actual > invoice.previous
+                    : invoice.actual &&
+                      invoice.previous &&
+                      invoice.actual > invoice.previous
                     ? "text-green-400"
                     : "text-red-600"
                 }`}

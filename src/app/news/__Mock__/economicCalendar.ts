@@ -1,4 +1,6 @@
-export const economicCalendarNews = [
+import { EventData } from "../interfaces/news";
+
+export const economicCalendarNews: EventData[] = [
 {
   "date": "2024-02-16 04:30:00",
   "country": "JP",

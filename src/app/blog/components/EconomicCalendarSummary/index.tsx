@@ -6,10 +6,11 @@ import { Card } from "@/components/ui/card";
 import Events from "../Events";
 import { getNextEvents } from "../../helpers/getNextEvents";
 import Link from "next/link";
+import { EventData } from "@/app/news/interfaces/news";
 
 const EconomicCalendarSummary = (): JSX.Element => {
   /*   const { data, isLoading } = useNews(getThreeDays()[0], getThreeDays()[2]); */
-  const mock = [
+  const mock: EventData[] = [
     {
       date: "2024-04-12 12:00",
       country: "US",
@@ -21,7 +22,6 @@ const EconomicCalendarSummary = (): JSX.Element => {
       change: -3,
       impact: "Low",
       changePercentage: -0.484,
-      unit: "",
     },
     {
       date: "2024-04-12 12:00",
@@ -34,7 +34,6 @@ const EconomicCalendarSummary = (): JSX.Element => {
       change: -2,
       impact: "Low",
       changePercentage: -0.394,
-      unit: "",
     },
     {
       date: "2024-04-12 13:30",
@@ -47,7 +46,6 @@ const EconomicCalendarSummary = (): JSX.Element => {
       change: 0,
       impact: "Medium",
       changePercentage: 0,
-      unit: "",
     },
   ];
 
