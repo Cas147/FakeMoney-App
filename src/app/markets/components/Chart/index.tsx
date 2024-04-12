@@ -9,7 +9,7 @@ type IChart = {
 };
 
 const ChartComponent = ({ symbol }: IChart): JSX.Element => {
-  const [selectedTab, setSelectedTab] = useState("line");
+  const [selectedTab, setSelectedTab] = useState<"line" | "area" | "candlestick">("line");
   console.log("symbol", symbol);
   const { data, isLoading } = useGetDailyHistorical(symbol);
 
@@ -19,7 +19,7 @@ const ChartComponent = ({ symbol }: IChart): JSX.Element => {
     })
     .reverse();
 
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = (tab: "line" | "area" | "candlestick") => {
     setSelectedTab(tab);
   };
 
