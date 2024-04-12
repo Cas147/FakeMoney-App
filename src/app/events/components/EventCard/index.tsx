@@ -4,7 +4,7 @@ const EventCard = (): JSX.Element => {
       <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
         <img
           src="https://fakemoney.co/wp-content/uploads/2023/03/cropped-1D98A415-0FA9-4722-99AF-75A8E6929196-scaled-1.jpeg"
-          alt="card-image"
+          alt="cardImage"
         />
       </div>
       <div className="p-6">
@@ -12,9 +12,9 @@ const EventCard = (): JSX.Element => {
           UI/UX Review Check
         </h5>
         <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-          The place is close to Barceloneta Beach and bus stop just 2 min by
+          {`The place is close to Barceloneta Beach and bus stop just 2 min by
           walk and near to "Naviglio" where you can enjoy the main night life in
-          Barcelona.
+          Barcelona.`}
         </p>
       </div>
       <div className="p-6 pt-0">
