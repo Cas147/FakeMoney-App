@@ -1,8 +1,22 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import { Separator } from "@/components/ui/separator"
+import moment from "moment";
 
-const Carousel = ({ images }: { images: string[] }) => {
+export interface ImageItem {
+  id: number;
+  url: string;
+  title: string;
+  description: string;
+  date: string;
+}
+
+interface CarouselProps {
+  images: ImageItem[];
+}
+
+const Carousel = ({ images }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
@@ -21,23 +35,28 @@ const Carousel = ({ images }: { images: string[] }) => {
     <>
       <div
         id="indicators-carousel"
-        className="relative w-full"
+        className="relative w-full mb-4"
         data-carousel="static"
       >
         <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-          {images.map((imageUrl, index) => (
+          {images.map((imageUrl: ImageItem, index) => (
             <div
-              key={index}
+              key={imageUrl.id}
               className={`${
                 currentIndex === index ? "block" : "hidden"
               } duration-700 ease-in-out`}
               data-carousel-item="active"
             >
               <img
-                src={imageUrl}
+                src={imageUrl.url}
                 className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt={`Slide ${index + 1}`}
+                alt={imageUrl.title}
               />
+              <div className="absolute w-10/12 font-bold top-20 left-20 inset-x-auto text-white">
+                <p className="text-xl md:text-4xl">{imageUrl.title}</p>
+                <Separator className="my-4 bg-slate-50" />
+                <p className="text-slate-50 font-md">{moment(imageUrl.date).format('LL')}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -47,7 +66,7 @@ const Carousel = ({ images }: { images: string[] }) => {
               key={index}
               type="button"
               className={`w-3 h-3 rounded-full ${
-                currentIndex === index ? "bg-white" : "bg-gray-300"
+                currentIndex === index ? "bg-amber-400" : "bg-gray-300"
               }`}
               aria-current={currentIndex === index ? "true" : "false"}
               aria-label={`Slide ${index + 1}`}

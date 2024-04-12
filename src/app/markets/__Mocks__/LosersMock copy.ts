@@ -1,12 +1,5 @@
 export const activesMock = [
   {
-    symbol: "SQQQ",
-    name: "ProShares UltraPro Short QQQ",
-    change: 0.32,
-    price: 11.65,
-    changesPercentage: 2.8244,
-  },
-  {
     symbol: "SOXS",
     name: "Direxion Daily Semiconductor Bear 3X Shares",
     change: 0.09,
@@ -47,6 +40,13 @@ export const activesMock = [
     change: -1.62,
     price: 57.41,
     changesPercentage: -2.7444,
+  },
+  {
+    symbol: "SQQQ",
+    name: "ProShares UltraPro Short QQQ",
+    change: 0.32,
+    price: 11.65,
+    changesPercentage: 2.8244,
   },
   {
     symbol: "SPY",
