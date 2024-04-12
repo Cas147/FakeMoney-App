@@ -3,7 +3,7 @@ const EventCard = (): JSX.Element => {
     <div className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
       <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
         <img
-          src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8;auto=format;fit=crop;w=800;q=80"
+          src="https://fakemoney.co/wp-content/uploads/2023/03/cropped-1D98A415-0FA9-4722-99AF-75A8E6929196-scaled-1.jpeg"
           alt="card-image"
         />
       </div>
