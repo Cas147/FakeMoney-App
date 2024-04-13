@@ -36,7 +36,14 @@ export default function Page({ params }: { params: { blog: string } }) {
 
                     <div className="mt-4">
                       {tradingBlogPost.sections.map((section) => {
-                        return <SectionComponent section={section} />;
+                        return (
+                          <SectionComponent
+                            key={section.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}
+                            section={section}
+                          />
+                        );
                       })}
                     </div>
                   </div>
