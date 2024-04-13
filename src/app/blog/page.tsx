@@ -8,6 +8,7 @@ import PopularPosts from "./components/PopularPosts";
 import EconomicCalendarSummary from "./components/EconomicCalendarSummary";
 import MostActives from "./components/MostActives";
 import { activesMock } from "../markets/__Mocks__/LosersMock copy";
+import { activesMock5 } from "../markets/__Mocks__/ActiveMock";
 
 const Page = (): JSX.Element => {
   return (
@@ -25,7 +26,7 @@ const Page = (): JSX.Element => {
                   <PopularPosts />
                 </div>
                 <div className="col-span-12 md:col-span-4 pl-8">
-                  <MostActives data={activesMock.splice(0, 6)} />
+                  <MostActives data={activesMock5} />
                   <EconomicCalendarSummary />
                 </div>
               </div>
