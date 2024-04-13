@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 import moment from "moment";
+import Link from "next/link";
 
 export interface ImageItem {
   id: number;
@@ -53,9 +54,16 @@ const Carousel = ({ images }: CarouselProps) => {
                 alt={imageUrl.title}
               />
               <div className="absolute w-10/12 font-bold top-20 left-20 inset-x-auto text-white">
-                <p className="text-xl md:text-4xl">{imageUrl.title}</p>
+                <Link
+                  href={`/blog/${imageUrl.title}`}
+                  className="text-xl md:text-4xl"
+                >
+                  {imageUrl.title}
+                </Link>
                 <Separator className="my-4 bg-slate-50" />
-                <p className="text-slate-50 font-md">{moment(imageUrl.date).format('LL')}</p>
+                <p className="text-slate-50 font-md">
+                  {moment(imageUrl.date).format("LL")}
+                </p>
               </div>
             </div>
           ))}
