@@ -12,7 +12,7 @@ import Pagination from "@/components/Pagination";
 import CurrenciesTable from "./components/MarketTableV2";
 import { getMarketData } from "./helpers/marketsInfoAdapters";
 
-const page = () => {
+const Page = () => {
   const [activeTab, setActiveTab] = useState<string>("cryptocurrencies");
   const { data, isLoading } = useGetMarkets(activeTab);
 
@@ -68,4 +68,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
