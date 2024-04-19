@@ -55,7 +55,7 @@ export default function Page({ params }: { params: { currency: string } }) {
           <div className="my-8 flex justify-center">
             <Button className="relative p-2 w-10/12 text-sm font-medium flex items-center border border-amber-400 mb-2 me-2 overflow-hidden rounded-lg group bg-gradient-to-br hover:from-amber-300 hover:to-orange-600  text-white">
               <FaRegStar className="mr-2" />
-              Añadir al portafolio
+              Añadir a favoritos
             </Button>
           </div>
 
@@ -107,8 +107,7 @@ export default function Page({ params }: { params: { currency: string } }) {
           </div>
         </div>
         <div className="col-span-12 md:col-span-8">
-          <div>{(data || [])[0]?.name}</div>
-          <ChartComponent symbol={params.currency} />
+          <ChartComponent symbol={params.currency}  name={(data || [])[0]?.name}/>
         </div>
       </div>
     </>

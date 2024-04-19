@@ -3,13 +3,21 @@ import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import "./index.css";
 import { useGetDailyHistorical } from "../../hooks/useGetDailyHistorical";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import { FaChartLine } from "react-icons/fa6";
+import { FaChartArea } from "react-icons/fa6";
+import { FaChartSimple } from "react-icons/fa6";
 
 type IChart = {
   symbol: string;
+  name: string;
 };
 
-const ChartComponent = ({ symbol }: IChart): JSX.Element => {
-  const [selectedTab, setSelectedTab] = useState<"line" | "area" | "candlestick">("line");
+const ChartComponent = ({ symbol, name }: IChart): JSX.Element => {
+  const [selectedTab, setSelectedTab] = useState<
+    "line" | "area" | "candlestick"
+  >("line");
   console.log("symbol", symbol);
   const { data, isLoading } = useGetDailyHistorical(symbol);
 
@@ -77,38 +85,66 @@ const ChartComponent = ({ symbol }: IChart): JSX.Element => {
 
   return (
     <div className="px-0 md:px-4">
-      <div className="flex justify-center space-x-4 list-none rounded-xl w-auto">
-        <button
-          className={`focus:outline-none px-4 py-2 rounded-lg  ${
-            selectedTab === "line"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-800"
-          }`}
-          onClick={() => handleTabChange("line")}
-        >
-          Line Chart
-        </button>
-        <button
-          className={`focus:outline-none px-4 py-2 rounded-lg ${
-            selectedTab === "area"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-800"
-          }`}
-          onClick={() => handleTabChange("area")}
-        >
-          Area Chart
-        </button>
-        <button
-          className={`focus:outline-none px-4 py-2 rounded-lg ${
-            selectedTab === "candlestick"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-800"
-          }`}
-          onClick={() => handleTabChange("candlestick")}
-        >
-          Candlestick Chart
-        </button>
+      <div className="flex justify-between items-center mb-4">
+        <div className="text-xl text-white">{name}</div>
+        <div className="block md:flex justify-between items-center">
+          <Tabs defaultValue={selectedTab}>
+            <TabsList className="grid grid-cols-3 bg-slate-600">
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="line"
+                onClick={() => handleTabChange("line")}
+              >
+                <FaChartLine />
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="area"
+                onClick={() => handleTabChange("area")}
+              >
+                <FaChartArea />
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="candlestick"
+                onClick={() => handleTabChange("candlestick")}
+              >
+                <FaChartSimple />
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          <Tabs defaultValue="1d" className="ml-4">
+            <TabsList className="grid grid-cols-4 bg-slate-600">
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="1d"
+              >
+                1d
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="1h"
+              >
+                1h
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="5m"
+              >
+                5m
+              </TabsTrigger>
+              <TabsTrigger
+                className="text-white data-[state=active]:bg-amber-400"
+                value="1m"
+              >
+                1m
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </div>
+
       {selectedTab === "candlestick" ? (
         <Chart
           options={options}

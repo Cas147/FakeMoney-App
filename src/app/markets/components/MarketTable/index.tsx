@@ -161,32 +161,11 @@ export const columns: ColumnDef<Quote>[] = [
   },
 ];
 
-const MarketTable = (): JSX.Element => {
-  const tabs: Tab[] = [
-    {
-      id: "cryptocurrencies",
-      title: "Cryptos",
-      content: <div>Content for Tab 1</div>,
-    },
-    {
-      id: "forex-currency-pairs",
-      title: "Forex",
-      content: <div>Content for Tab 2</div>,
-    },
-    {
-      id: "commodities",
-      title: "Commodities",
-      content: <div>Content for Tab 2</div>,
-    },
-  ];
-
+const MarketTable = ({ data }: { data: any }): JSX.Element => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const [activeTab, setActiveTab] = React.useState<string>(tabs[0].id);
-
-  const { data, isLoading } = useGetMarkets(activeTab);
 
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -194,15 +173,9 @@ const MarketTable = (): JSX.Element => {
   const table = useReactTable({
     data: getMarketData(data) || [],
     columns,
-    initialState: {
-      pagination: {
-        pageSize: 30,
-      },
-    },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
@@ -224,13 +197,7 @@ const MarketTable = (): JSX.Element => {
           }
           className="max-w-sm text-white border-slate-700 border mr-4"
         />
-        <TabsTable
-          tabs={tabs}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          isLoading={isLoading}
-        />
-        <DropdownMenu>
+        {/* <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
@@ -239,7 +206,7 @@ const MarketTable = (): JSX.Element => {
               ver <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="bg-zinc-800">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -247,7 +214,7 @@ const MarketTable = (): JSX.Element => {
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize"
+                    className="capitalize text-white"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)
@@ -258,7 +225,7 @@ const MarketTable = (): JSX.Element => {
                 );
               })}
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
       <div className="rounded-md border-none">
         <Table className="border-none">
@@ -313,28 +280,6 @@ const MarketTable = (): JSX.Element => {
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            className="text-white"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            className="text-white"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
       </div>
     </div>
   );
